@@ -1,14 +1,18 @@
 <template>
   <div :class="$style.wrapper">
     <div :class="$style.content">
-      <div :class="$style.leftBox">
-        Back
+      <div :class="[$style.buttonBox, $style.left]">
+        <a href="">
+          Back
+        </a>
       </div>
       <span :class="$style.pageTitle">
         Product Shelf
       </span>
-      <div :class="$style.rightBox">
-        Create
+      <div :class="[$style.buttonBox, $style.right]">
+        <a href="">
+          Create
+        </a>
       </div>
     </div>
   </div>
@@ -19,30 +23,50 @@
 </script>
 
 <style lang="scss" module>
+@import '~/assets/variable.scss';
 $ContentHeight: 60px;
 .wrapper {
   height: $ContentHeight;
   display: flex;
   justify-content: center;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, .2);
 }
 .content {
   width: 1200px;
+  padding: 0 $windowPaddingLeftRight;
   height: 100%;
   display: flex;
   line-height: $ContentHeight;
   text-align: center;
-  .leftBox {
+  .buttonBox {
     width: 100px;
-    justify-self: flex-start;
-    background-color: #faa;
+    display: flex;
+    align-items: center;
+    a {
+      width: 100%;
+      height: 40px;
+      border: 2px solid rgb(235, 162, 72);
+      border-radius: 10px;
+      text-decoration: none;
+      color: #000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &.left {
+      justify-self: flex-start;
+    }
+    &.right {
+      justify-self: flex-end;
+      a {
+        background-color: rgb(235, 162, 72);
+        border: none;
+        color: #fff;
+      }
+    }
   }
   .pageTitle {
     flex-grow: 1;
-  }
-  .rightBox {
-    width: 100px;
-    justify-self: flex-end;
-    background-color: #faa;
   }
 }
 </style>

@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@nuxtjs/eslint-config": "^11.0.0",
-    "eslint": "^8.27.0",
-    "eslint-plugin-vue": "^9.7.0"
+    "eslint": "^8.27.0"
   }
 }

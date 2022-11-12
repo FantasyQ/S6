@@ -6,5 +6,5 @@
 </template>
 
 <script setup>
-import AppHeader from './components/app-header'
+import AppHeader from '~/components/app-header'
 </script>
