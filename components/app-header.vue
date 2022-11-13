@@ -2,23 +2,33 @@
   <div :class="$style.wrapper">
     <div :class="$style.content">
       <div :class="[$style.buttonBox, $style.left]">
-        <a href="">
+        <NuxtLink
+          v-if="isEditPage"
+          to="/"
+        >
           Back
-        </a>
+        </NuxtLink>
       </div>
       <span :class="$style.pageTitle">
         Product Shelf
       </span>
       <div :class="[$style.buttonBox, $style.right]">
-        <a href="">
+        <span
+          v-if="isEditPage"
+        >
+          Edit
+        </span>
+        <span v-else>
           Create
-        </a>
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const route = useRoute()
+const isEditPage = computed(() => route.name === 'product-edit-id')
 
 </script>
 
@@ -42,7 +52,7 @@ $ContentHeight: 60px;
     width: 100px;
     display: flex;
     align-items: center;
-    a {
+    a, span {
       width: 100%;
       height: 40px;
       border: 2px solid rgb(235, 162, 72);
@@ -52,13 +62,15 @@ $ContentHeight: 60px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      user-select: none;
     }
     &.left {
       justify-self: flex-start;
     }
     &.right {
       justify-self: flex-end;
-      a {
+      a, span {
         background-color: rgb(235, 162, 72);
         border: none;
         color: #fff;
