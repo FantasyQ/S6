@@ -9,7 +9,16 @@
           Back
         </NuxtLink>
       </div>
-      <span :class="$style.pageTitle">
+      <span
+        v-if="isEditPage"
+        :class="$style.pageTitle"
+      >
+        {{ productName }}
+      </span>
+      <span
+        v-else
+        :class="$style.pageTitle"
+      >
         Product Shelf
       </span>
       <div :class="[$style.buttonBox, $style.right]">
@@ -27,9 +36,27 @@
 </template>
 
 <script setup>
+import { useProductStore } from '../store/product'
+
 const route = useRoute()
 const isEditPage = computed(() => route.name === 'product-edit-id')
 
+const productID = computed(() => route.params.id)
+const productStore = useProductStore();
+onMounted(() => {
+  if (productStore.productList.length === 0) {
+    productStore.fetchProductList()
+  }
+})
+const productList = computed(() => {
+  return productStore.productList
+})
+const productName = ref('');
+watch([productList, productID], () => {
+  if (isEditPage.value) {
+    productName.value = productStore.getProductByID(productID.value)[0].product_name
+  }
+})
 </script>
 
 <style lang="scss" module>

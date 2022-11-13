@@ -1,8 +1,12 @@
 <template>
   <div :class="$style.wrapper">
-    <div :class="$style.imageBox">
-      <img :src="data.product_img_path" alt="">
-    </div>
+    <ImageBoxAlignCenter
+      :imgData="{
+        width: '44.444%',
+        src: props.data.product_img_path,
+        alt: props.data.product_name,
+      }"
+    />
     <div :class="$style.contentBox">
       <h4>
         {{ props.data.product_name }}
@@ -15,8 +19,9 @@
 </template>
 
 <script setup>
+import ImageBoxAlignCenter from '~/components/image-box-align-center'
 const props = defineProps({
-  data: Object,
+  data: Object
 })
 </script>
 

@@ -5,6 +5,13 @@ export const useProductStore = defineStore('product', {
   state: () => ({
     productList: []
   }),
+  getters: {
+    getProductByID (state) {
+      return (pdID) => (state.productList.filter((element) => {
+        return element.product_id === pdID
+      }))
+    }
+  },
   actions: {
     async fetchProductList () {
       const result = await getProductList
