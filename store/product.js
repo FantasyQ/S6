@@ -7,7 +7,7 @@ export const useProductStore = defineStore('product', {
   }),
   getters: {
     getProductByID (state) {
-      return (pdID) => (state.productList.filter((element) => {
+      return pdID => (state.productList.filter((element) => {
         return element.product_id === pdID
       }))
     }

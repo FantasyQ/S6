@@ -7,7 +7,7 @@
       'padding-top': props.imgData.width
     }"
   >
-    <img :src="props.imgData.src" :alt="props.imgData.alt">
+    <img :src="props.imgData.src" :alt="props.imgData.alt" loading="lazy">
   </div>
 </template>
 

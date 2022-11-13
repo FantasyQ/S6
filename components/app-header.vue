@@ -42,16 +42,11 @@ const route = useRoute()
 const isEditPage = computed(() => route.name === 'product-edit-id')
 
 const productID = computed(() => route.params.id)
-const productStore = useProductStore();
-onMounted(() => {
-  if (productStore.productList.length === 0) {
-    productStore.fetchProductList()
-  }
-})
+const productStore = useProductStore()
 const productList = computed(() => {
   return productStore.productList
 })
-const productName = ref('');
+const productName = ref('')
 watch([productList, productID], () => {
   if (isEditPage.value) {
     productName.value = productStore.getProductByID(productID.value)[0].product_name
